@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.pandora.cloud</groupId>
+        <artifactId>pandora-cloud-dependencies</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.pandora.cloud</groupId>
+    <artifactId>pandora-cloud-start-run</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+    </properties>
+
+    <modules>
+        <module>pandora-cloud-console-start-run</module>
+        <module>pandora-cloud-dashboard-start-run</module>
+        <module>pandora-cloud-data-start-run</module>
+        <module>pandora-cloud-gateway-start-run</module>
+        <module>pandora-cloud-mobile-start-run</module>
+        <module>pandora-cloud-open-start-run</module>
+        <module>pandora-cloud-program-start-run</module>
+        <module>pandora-cloud-schedule-start-run</module>
+    </modules>
+
+
+    <dependencies>
+        <!-- 热部署模块 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- 测试模块 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <resources>
+            <resource>
+                <filtering>true</filtering>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>application.properties</include>
+                    <include>application-${profiles.active}.properties</include>
+                    <include>spy.properties</include>
+                    <include>logback-spring.xml</include>
+                    <include>logback-spring-boot.xml</include>
+                    <include>**/*.xml</include>
+                    <include>*.txt</include>
+                </includes>
+            </resource>
+        </resources>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <fork>true</fork>
+                    <mainClass>${start-class}</mainClass>
+                    <layout>ZIP</layout>
+                    <classifier>${profiles.active}</classifier>
+                    <executable>false</executable>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>develop</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <profiles.active>develop</profiles.active>
+                <logback.dir>./app/logs</logback.dir>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profiles.active>test</profiles.active>
+                <logback.dir>./app/logs</logback.dir>
+            </properties>
+        </profile>
+        <profile>
+            <id>preview</id>
+            <properties>
+                <profiles.active>preview</profiles.active>
+                <logback.dir>./app/logs</logback.dir>
+            </properties>
+        </profile>
+        <profile>
+            <id>product</id>
+            <properties>
+                <profiles.active>product</profiles.active>
+                <logback.dir>./app/logs</logback.dir>
+            </properties>
+        </profile>
+        <profile>
+            <id>jdk-1.8</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <jdk>[1.8,)</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.target>${java.version}</maven.compiler.target>
+                <maven.compiler.version>${java.version}</maven.compiler.version>
+                <maven.compiler.source>${java.version}</maven.compiler.source>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>
