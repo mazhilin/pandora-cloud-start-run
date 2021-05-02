@@ -1,5 +1,6 @@
 package com.pandora.cloud.dashboard.startrun;
 
+import com.pandora.cloud.common.schedule.annotation.EnablePandoraCloudJob;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * <p>Copyright © 2018-2021 Pivotal Cloud Technology Systems Incorporated. All rights reserved.<br></p>
  */
 @SpringBootApplication
+@EnablePandoraCloudJob
 public class PandoraCloudDashboardApplication {
     public static void main(String[] args) {
         SpringApplication.run(PandoraCloudDashboardApplication.class, args);
