@@ -24,6 +24,7 @@
         <module>pandora-cloud-dashboard-start-run</module>
         <module>pandora-cloud-data-start-run</module>
         <module>pandora-cloud-gateway-start-run</module>
+        <module>pandora-cloud-generator-start-run</module>
         <module>pandora-cloud-manager-start-run</module>
         <module>pandora-cloud-mobile-start-run</module>
         <module>pandora-cloud-open-start-run</module>
