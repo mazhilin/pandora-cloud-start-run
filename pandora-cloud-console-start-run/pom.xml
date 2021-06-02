@@ -22,6 +22,14 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.pandora.cloud</groupId>
+            <artifactId>pandora-cloud-console</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.pandora.cloud</groupId>
+            <artifactId>pandora-cloud-integration</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
         </dependency>
